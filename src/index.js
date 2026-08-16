@@ -8,7 +8,7 @@ import { displayProject } from './userInterface.js';
 // const todo2 = new Todo('todo number 2');
 // todo2.displayTodoTitle();
 
-const proj1 = new Project('default', 'Default Project');
+const proj1 = new Project('Project 1', 'Project 1 Description');
 proj1.addTodo('display project title', 'description1');
 proj1.addTodo('add button to add todo items', 'description2');
 proj1.logTodoItems();

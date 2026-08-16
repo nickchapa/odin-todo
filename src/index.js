@@ -15,7 +15,7 @@ proj1.addTodo('add checkbox to cross off finished items');
 proj1.logTodoItems();
 
 displayProject(proj1);
-addTodoBtn();
+addTodoBtn(proj1);
 
 //todo1.changeTitle();
 //todo1.displayTodoTitle();

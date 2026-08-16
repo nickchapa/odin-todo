@@ -25,6 +25,11 @@ export function addTodoBtn(project){
 
     addBtn.addEventListener('click', (e) => {
         console.log(e.target);
+        const newTodo = prompt('create new todo');
+        project.addTodo(newTodo);
+        const newTodoP = document.createElement('p');
+        newTodoP.textContent = newTodo;
+        body.append(newTodoP);
     })
 }
 

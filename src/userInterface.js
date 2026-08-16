@@ -16,5 +16,17 @@ export function displayProject(project){
     }
 }
 
+export function addTodoBtn(project){
+    // add button next to project title?
+    // when clicked, creates input field for new todo details
+    const addBtn = document.createElement('button');
+    addBtn.textContent = '+';
+    body.append(addBtn);
+
+    addBtn.addEventListener('click', (e) => {
+        console.log(e.target);
+    })
+}
+
 // create class for new project to display??
 // display project + todos

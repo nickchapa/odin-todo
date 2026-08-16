@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Project } from './Project.js';
-import { displayProject } from './userInterface.js';
+import { addTodoBtn, displayProject } from './userInterface.js';
 
 // const todo1 = new Todo('todo number 1');
 // todo1.displayTodoTitle();
@@ -15,6 +15,7 @@ proj1.addTodo('add checkbox to cross off finished items');
 proj1.logTodoItems();
 
 displayProject(proj1);
+addTodoBtn();
 
 //todo1.changeTitle();
 //todo1.displayTodoTitle();

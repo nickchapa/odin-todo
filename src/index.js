@@ -11,7 +11,7 @@ import { displayProject } from './userInterface.js';
 const proj1 = new Project('default', 'Default Project');
 proj1.addTodo('display project title', 'description1');
 proj1.addTodo('add button to add todo items', 'description2');
-proj1.displayTodoItems();
+proj1.logTodoItems();
 
 displayProject(proj1);
 

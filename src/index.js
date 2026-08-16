@@ -11,6 +11,7 @@ import { displayProject } from './userInterface.js';
 const proj1 = new Project('Project 1', 'Project 1 Description');
 proj1.addTodo('display project title', 'description1');
 proj1.addTodo('add button to add todo items', 'description2');
+proj1.addTodo('add checkbox to cross off finished items');
 proj1.logTodoItems();
 
 displayProject(proj1);

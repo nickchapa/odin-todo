@@ -1,37 +1,34 @@
 const body = document.querySelector('body');
 
 export function displayProject(project){
-    console.log('userinterface.js')
-    
-    const projectH3 = document.createElement('h3');
-    projectH3.textContent = project.title;
-    body.append(projectH3);
-    console.log(`project: ${project.title}`);
+    const projDiv = document.createElement('div');
+    const projH3 = document.createElement('h3');
+    const todoListUl = document.createElement('ul');
+    const addBtn = document.createElement('button');
+
+    projH3.textContent = project.title;
+
+    projDiv.append(projH3);
+    projDiv.append(todoListUl);
 
     for(let item of project.todoArr){
-        const todoPara = document.createElement('p');
-        todoPara.textContent = item.title;
-        body.append(todoPara);
-        console.log(`item: ${item.title}`);
+        const todoLi = document.createElement('li');
+        todoLi.textContent = item.title;
+        todoListUl.append(todoLi);
     }
-}
 
-export function addTodoBtn(project){
-    // add button next to project title?
-    // when clicked, creates input field for new todo details
-    const addBtn = document.createElement('button');
     addBtn.textContent = '+';
-    body.append(addBtn);
+    projDiv.append(addBtn);
 
-    addBtn.addEventListener('click', (e) => {
-        console.log(e.target);
-        const newTodo = prompt('create new todo');
-        project.addTodo(newTodo);
-        const newTodoP = document.createElement('p');
-        newTodoP.textContent = newTodo;
-        body.append(newTodoP);
+    addBtn.addEventListener('click', () => {
+        const newTodoTitle = prompt('add new todo title');
+        project.addTodo(newTodoTitle);
+
+        const newTodoLi = document.createElement('li');
+        newTodoLi.textContent = project.todoArr[project.todoArr.length - 1].title;
+
+        todoListUl.append(newTodoLi);
     })
-}
 
-// create class for new project to display??
-// display project + todos
+    body.append(projDiv);
+}

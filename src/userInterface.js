@@ -12,9 +12,7 @@ export function displayProject(project){
     projDiv.append(todoListUl);
 
     for(let item of project.todoArr){
-        const todoLi = document.createElement('li');
-        todoLi.textContent = item.title;
-        todoListUl.append(todoLi);
+        displayTodo(item, todoListUl);
     }
 
     addBtn.textContent = '+';
@@ -23,12 +21,27 @@ export function displayProject(project){
     addBtn.addEventListener('click', () => {
         const newTodoTitle = prompt('add new todo title');
         project.addTodo(newTodoTitle);
+        const newTodo = project.todoArr[project.todoArr.length - 1];
 
-        const newTodoLi = document.createElement('li');
-        newTodoLi.textContent = project.todoArr[project.todoArr.length - 1].title;
-
-        todoListUl.append(newTodoLi);
+        displayTodo(newTodo, todoListUl);
     })
 
     body.append(projDiv);
+}
+
+function displayTodo(todo, ul){
+        const todoListUl = document.querySelector('ul');
+        const todoLabel = document.createElement('label');
+        todoLabel.for = 'todoCheck';
+
+        const todoLi = document.createElement('li');
+        const todoCheckbox = document.createElement('input', 'type="checkbox"');
+        todoCheckbox.type = 'checkbox';
+        todoCheckbox.id = 'todoCheck';
+
+        todoLabel.textContent = todo.title;
+
+        todoLi.append(todoCheckbox);
+        todoLi.append(todoLabel);
+        ul.append(todoLi);
 }

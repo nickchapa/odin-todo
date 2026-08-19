@@ -9,6 +9,7 @@ export class Todo {
         this.priority = priority;
         this.notes = notes;
         this.checklist = checklist;
+        this.checklist = false;
     }
 
     displayTodoTitle(){

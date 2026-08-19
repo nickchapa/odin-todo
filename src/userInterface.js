@@ -41,6 +41,10 @@ function displayTodo(todo, ul){
 
         todoLabel.textContent = todo.title;
 
+        todoCheckbox.addEventListener('click', (e) => {
+            todo.checklist = !todo.checklist;
+        })
+
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
         ul.append(todoLi);

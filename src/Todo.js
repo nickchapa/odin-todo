@@ -12,8 +12,13 @@ export class Todo {
         this.checklist = false;
     }
 
-    displayTodoTitle(){
+    logTodoDetails(){
         console.log(`title: ${this.title}`);
+        console.log(`description: ${this.description}`);
+        console.log(`dueDate: ${this.dueDate}`);
+        console.log(`priority: ${this.priority}`);
+        console.log(`notes: ${this.notes}`);
+        console.log(`checklist: ${this.checklist}`);
     }
 
     changeTitle(){

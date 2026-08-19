@@ -43,6 +43,7 @@ function displayTodo(todo, ul){
 
         todoCheckbox.addEventListener('click', (e) => {
             todo.checklist = !todo.checklist;
+            todo.logTodoDetails();
         })
 
         todoLi.append(todoCheckbox);

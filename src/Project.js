@@ -14,7 +14,7 @@ export class Project {
 
     logTodoItems(){
         for(let item of this.todoArr){
-            console.log(`Project: ${this.title}, Todo: ${item.title}`, `${item.description}`);
+            console.log(`Project: ${this.title}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);
         }
     }
 }

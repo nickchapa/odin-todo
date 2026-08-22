@@ -1,20 +1,20 @@
 import { Todo } from './Todo.js';
 
 export class Project {
-    constructor(title, description){
+    constructor(title, projectDescription){
         this.title = title;
-        this.description = description;
+        this.projectDescription = projectDescription;
         this.todoArr = [];
     }
 
-    addTodo(title, description, dueDate, priority, notes, checklist){
-        const todo = new Todo(title, description, dueDate, priority, notes, checklist);
+    addTodo({title: newTitle, description: newDescription, dueDate: newDueDate, priority: newPriority, notes: newNotes, checklist: newChecklist}){
+        const todo = new Todo({title: newTitle, description: newDescription, projectTitle: this.title});
         this.todoArr.push(todo);
     }
 
     logTodoItems(){
         for(let item of this.todoArr){
-            console.log(`Project: ${this.title}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);
+            console.log(`Project: ${item.projectTitle}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);
         }
     }
 }

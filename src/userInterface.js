@@ -20,7 +20,7 @@ export function displayProject(project){
 
     addBtn.addEventListener('click', () => {
         const newTodoTitle = prompt('add new todo title');
-        project.addTodo(newTodoTitle);
+        project.addTodo({title: newTodoTitle});
         const newTodo = project.todoArr[project.todoArr.length - 1];
 
         displayTodo(newTodo, todoListUl);
@@ -43,7 +43,6 @@ function displayTodo(todo, ul){
 
         todoCheckbox.addEventListener('click', (e) => {
             todo.checklist = !todo.checklist;
-            todo.logTodoDetails();
         })
 
         todoLi.append(todoCheckbox);

@@ -12,6 +12,11 @@ export class Project {
         this.todoArr.push(todo);
     }
 
+    removeTodo(todo){
+        const found = this.todoArr.findIndex((element) => element.id == todo.id);
+        this.todoArr.splice(found, 1);
+    }
+
     logTodoItems(){
         for(let item of this.todoArr){
             console.log(`Project: ${item.projectTitle}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);

@@ -11,6 +11,7 @@ export class Todo {
         this.checklist = checklist;
         this.projectTitle = projectTitle;
 
+        this.id = crypto.randomUUID();
         this.checklist = false;
     }
 

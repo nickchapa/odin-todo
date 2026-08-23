@@ -12,7 +12,7 @@ export function displayProject(project){
     projDiv.append(todoListUl);
 
     for(let item of project.todoArr){
-        displayTodo(item, todoListUl);
+        displayTodo(item, todoListUl, project);
     }
 
     addBtn.textContent = '+';
@@ -23,13 +23,13 @@ export function displayProject(project){
         project.addTodo({title: newTodoTitle});
         const newTodo = project.todoArr[project.todoArr.length - 1];
 
-        displayTodo(newTodo, todoListUl);
+        displayTodo(newTodo, todoListUl, project);
     })
 
     body.append(projDiv);
 }
 
-function displayTodo(todo, ul){
+function displayTodo(todo, ul, project){
         const todoListUl = document.querySelector('ul');
         const todoLabel = document.createElement('label');
         todoLabel.for = 'todoCheck';
@@ -45,7 +45,15 @@ function displayTodo(todo, ul){
             todo.checklist = !todo.checklist;
         })
 
+        const todoRemoveBtn = document.createElement('button');
+        todoRemoveBtn.textContent = '-';
+        todoRemoveBtn.addEventListener('click', (e) => {
+            project.removeTodo(todo);
+            todoLi.remove();
+        })
+
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
+        todoLi.append(todoRemoveBtn);
         ul.append(todoLi);
 }

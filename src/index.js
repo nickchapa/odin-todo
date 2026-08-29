@@ -2,18 +2,14 @@ import "./styles.css";
 import { Project } from './Project.js';
 import * as UI from './userInterface.js';
 
-// const todo1 = new Todo('todo number 1');
-// todo1.displayTodoTitle();
+let proj1 = new Project('Project 1', 'Project 1 Description');
 
-// const todo2 = new Todo('todo number 2');
-// todo2.displayTodoTitle();
-
-const proj1 = new Project('Project 1', 'Project 1 Description');
-proj1.addTodo({title: 'display project title', description: 'description1'});
-proj1.addTodo({title: 'add button to add todo items', description: 'description2'});
-proj1.addTodo({title: 'add checkbox to cross off finished items'});
+if(localStorage.getItem('proj1')){
+    proj1 = JSON.parse(localStorage.getItem('proj1'));
+    Object.setPrototypeOf(proj1, Project.prototype);
+}
+else{
+    localStorage.setItem('proj1', JSON.stringify(proj1));
+}
 
 UI.displayProject(proj1);
-
-//todo1.changeTitle();
-//todo1.displayTodoTitle();

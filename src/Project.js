@@ -10,11 +10,13 @@ export class Project {
     addTodo({title: newTitle, description: newDescription, dueDate: newDueDate, priority: newPriority, notes: newNotes, checklist: newChecklist}){
         const todo = new Todo({title: newTitle, description: newDescription, projectTitle: this.title});
         this.todoArr.push(todo);
+        localStorage.setItem('proj1', JSON.stringify(this));
     }
 
     removeTodo(todo){
         const found = this.todoArr.findIndex((element) => element.id == todo.id);
         this.todoArr.splice(found, 1);
+        localStorage.setItem('proj1', JSON.stringify(this));
     }
 
     logTodoItems(){

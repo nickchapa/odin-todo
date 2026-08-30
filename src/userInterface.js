@@ -53,8 +53,18 @@ function displayTodo(todo, ul, project){
             todoLi.remove();
         })
 
+        // details button
+        const todoDetailsBtn = document.createElement('button');
+        todoDetailsBtn.textContent = 'details';
+        todoDetailsBtn.addEventListener('click', (e) => {
+            for (let key in todo){
+                console.log(`${key}: ${todo[key]}`);
+            }
+        })
+
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
         todoLi.append(todoRemoveBtn);
+        todoLi.append(todoDetailsBtn);
         ul.append(todoLi);
 }

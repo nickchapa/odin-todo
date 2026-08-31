@@ -62,9 +62,25 @@ function displayTodo(todo, ul, project){
             }
         })
 
+        const descriptionBtn = document.createElement('button');
+        descriptionBtn.textContent = 'description';
+        const descriptionP = document.createElement('p');
+        descriptionP.textContent = '';
+        descriptionBtn.addEventListener('click', (e) => {
+            if(descriptionP.textContent == ''){
+                descriptionP.textContent = todo.description;
+                todoLi.append(descriptionP);
+            }
+            else {
+                descriptionP.textContent = '';
+                console.log('is this running?');
+            }
+        })
+
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
         todoLi.append(todoRemoveBtn);
         todoLi.append(todoDetailsBtn);
+        todoLi.append(descriptionBtn);
         ul.append(todoLi);
 }

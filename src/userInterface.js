@@ -31,7 +31,6 @@ export function displayProject(project){
 }
 
 function displayTodo(todo, ul, project){
-        const todoListUl = document.querySelector('ul');
         const todoLabel = document.createElement('label');
         todoLabel.for = 'todoCheck';
 
@@ -46,12 +45,18 @@ function displayTodo(todo, ul, project){
             todo.checklist = !todo.checklist;
         })
 
-        const todoRemoveBtn = document.createElement('button');
-        todoRemoveBtn.textContent = '-';
-        todoRemoveBtn.addEventListener('click', (e) => {
-            project.removeTodo(todo);
-            todoLi.remove();
+        function createRemoveButton(){
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = '-';
+            removeBtn.addEventListener('click', (e) => {
+                project.removeTodo(todo);
+                todoLi.remove();
         })
+
+            return removeBtn;
+        }
+
+        const todoRemoveBtn = createRemoveButton();
 
         // details button
         const todoDetailsBtn = document.createElement('button');

@@ -39,10 +39,15 @@ function displayTodo(todo, ul, project){
         todoCheckbox.type = 'checkbox';
         todoCheckbox.id = 'todoCheck';
 
+        if(todo.checklist){
+            todoCheckbox.checked = true;
+        }
+
         todoLabel.textContent = todo.title;
 
         todoCheckbox.addEventListener('click', (e) => {
             todo.checklist = !todo.checklist;
+            localStorage.setItem('proj1', JSON.stringify(project));
         })
 
         function createRemoveButton(){

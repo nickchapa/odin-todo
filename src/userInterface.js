@@ -59,7 +59,7 @@ function displayTodo(todo, ul, project){
 
         function createRemoveButton(){
             const removeBtn = document.createElement('button');
-            removeBtn.textContent = '-';
+            removeBtn.textContent = 'delete';
             removeBtn.addEventListener('click', (e) => {
                 project.removeTodo(todo);
                 todoLi.remove();
@@ -67,8 +67,6 @@ function displayTodo(todo, ul, project){
 
             return removeBtn;
         }
-
-        const todoRemoveBtn = createRemoveButton();
 
         function createDetailsButton(){
             const detailsBtn = document.createElement('button');
@@ -83,7 +81,9 @@ function displayTodo(todo, ul, project){
                         detailsLi.textContent = `${key}: ${todo[key]}`;
                         todoDetailsUl.append(detailsLi);
                     }
+                    const todoRemoveBtn = createRemoveButton();
                     todoLi.append(todoDetailsUl);
+                    todoDetailsUl.append(todoRemoveBtn);
                 }
                 else todoDetailsUl.textContent = '';
             })
@@ -95,7 +95,6 @@ function displayTodo(todo, ul, project){
 
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
-        todoLi.append(todoRemoveBtn);
         todoLi.append(todoDetailsBtn);
         ul.append(todoLi);
 }

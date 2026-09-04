@@ -1,12 +1,11 @@
-p {
-    color: red;
-}
-
 ul {
     list-style: none;
 }
 
-li:has(input:checked) {
-    color: red;
+.details-ul {
+    list-style: circle;
+}
+
+li:has(input:checked) label {
     text-decoration: line-through;
 }

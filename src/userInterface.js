@@ -73,6 +73,7 @@ function displayTodo(todo, ul, project){
         function createDetailsButton(){
             const detailsBtn = document.createElement('button');
             const todoDetailsUl = document.createElement('ul');
+            todoDetailsUl.className = 'details-ul';
             detailsBtn.textContent = 'details';
             todoDetailsUl.textContent = '';
             detailsBtn.addEventListener('click', (e) => {

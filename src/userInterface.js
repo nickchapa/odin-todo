@@ -15,7 +15,7 @@ export function displayProject(project){
         displayTodo(item, todoListUl, project);
     }
 
-    addBtn.textContent = '+';
+    addBtn.textContent = 'New Task';
     projDiv.append(addBtn);
 
     addBtn.addEventListener('click', () => {

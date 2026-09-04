@@ -9,3 +9,7 @@ ul {
 li:has(input:checked) label {
     text-decoration: line-through;
 }
+
+.proj-div {
+    border: 2px solid black;
+}

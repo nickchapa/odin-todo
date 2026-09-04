@@ -6,6 +6,8 @@ export function displayProject(project){
     const todoListUl = document.createElement('ul');
     const addBtn = document.createElement('button');
 
+    projDiv.className = 'proj-div';
+
     projH3.textContent = project.title;
 
     projDiv.append(projH3);

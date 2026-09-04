@@ -63,34 +63,31 @@ function displayTodo(todo, ul, project){
 
         const todoRemoveBtn = createRemoveButton();
 
-        // details button
-        const todoDetailsBtn = document.createElement('button');
-        todoDetailsBtn.textContent = 'details';
-        todoDetailsBtn.addEventListener('click', (e) => {
-            for (let key in todo){
-                console.log(`${key}: ${todo[key]}`);
-            }
-        })
+        function createDetailsButton(){
+            const detailsBtn = document.createElement('button');
+            const todoDetailsUl = document.createElement('ul');
+            detailsBtn.textContent = 'details';
+            todoDetailsUl.textContent = '';
+            detailsBtn.addEventListener('click', (e) => {
+                if(todoDetailsUl.textContent == ''){
+                    for (let key in todo){
+                        const detailsLi = document.createElement('li');
+                        detailsLi.textContent = `${key}: ${todo[key]}`;
+                        todoDetailsUl.append(detailsLi);
+                    }
+                    todoLi.append(todoDetailsUl);
+                }
+                else todoDetailsUl.textContent = '';
+            })
 
-        const descriptionBtn = document.createElement('button');
-        descriptionBtn.textContent = 'description';
-        const descriptionP = document.createElement('p');
-        descriptionP.textContent = '';
-        descriptionBtn.addEventListener('click', (e) => {
-            if(descriptionP.textContent == ''){
-                descriptionP.textContent = todo.description;
-                todoLi.append(descriptionP);
-            }
-            else {
-                descriptionP.textContent = '';
-                console.log('is this running?');
-            }
-        })
+            return detailsBtn
+        }
+
+        const todoDetailsBtn = createDetailsButton();
 
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
         todoLi.append(todoRemoveBtn);
         todoLi.append(todoDetailsBtn);
-        todoLi.append(descriptionBtn);
         ul.append(todoLi);
 }

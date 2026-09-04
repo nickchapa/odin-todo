@@ -20,7 +20,14 @@ export function displayProject(project){
 
     addBtn.addEventListener('click', () => {
         const newTodoTitle = prompt('add new todo title');
-        const newTodoDescription = prompt('add description', 'none');
+        if (newTodoTitle == null){
+            return;
+        }
+
+        let newTodoDescription = prompt('add description', 'none');
+        if (newTodoDescription == null){
+            newTodoDescription = 'none';
+        }
         project.addTodo({title: newTodoTitle, description: newTodoDescription});
         const newTodo = project.todoArr[project.todoArr.length - 1];
 

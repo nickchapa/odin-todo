@@ -21,6 +21,11 @@ export class Project {
         updateLocalStorage(this);
     }
 
+    updateCheckedStatus(todo){
+        todo.checklist = !todo.checklist;
+        updateLocalStorage(this);
+    }
+
     logTodoItems(){
         for(let item of this.todoArr){
             console.log(`Project: ${item.projectTitle}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);

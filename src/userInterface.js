@@ -56,7 +56,9 @@ function displayTodo(todo, ul, project){
 
         todoCheckbox.addEventListener('click', (e) => {
             todo.checklist = !todo.checklist;
-            localStorage.setItem('proj1', JSON.stringify(project));
+            const storedProjects = JSON.parse(localStorage.getItem('projects'));
+            storedProjects[project.id] = project;
+            localStorage.setItem('projects', JSON.stringify(storedProjects));
         })
 
         function createRemoveButton(){

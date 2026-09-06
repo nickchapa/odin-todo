@@ -1,3 +1,5 @@
+import { Project } from './Project.js';
+
 const body = document.querySelector('body');
 
 export function displayProject(project){
@@ -102,3 +104,20 @@ function displayTodo(todo, ul, project){
         todoLi.append(todoDetailsBtn);
         ul.append(todoLi);
 }
+
+const addProjectButton = document.createElement('button');
+addProjectButton.textContent = 'New Project';
+addProjectButton.addEventListener('click', (e) => {
+    const newProjectTitle = prompt('New Project Name: ', 'newProject');
+    if (newProjectTitle == null){
+        return;
+    }
+    const newProject = new Project(newProjectTitle);
+    displayProject(newProject);
+
+    const projectsObject = JSON.parse(localStorage.getItem('projects'));
+    projectsObject[newProject.id] = newProject;
+    localStorage.setItem('projects', JSON.stringify(projectsObject));
+})
+
+body.append(addProjectButton);

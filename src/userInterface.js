@@ -114,10 +114,6 @@ addProjectButton.addEventListener('click', (e) => {
     }
     const newProject = new Project(newProjectTitle);
     displayProject(newProject);
-
-    const projectsObject = JSON.parse(localStorage.getItem('projects'));
-    projectsObject[newProject.id] = newProject;
-    localStorage.setItem('projects', JSON.stringify(projectsObject));
 })
 
 body.append(addProjectButton);

@@ -6,24 +6,19 @@ export class Project {
         this.projectDescription = projectDescription;
         this.todoArr = [];
         this.id = crypto.randomUUID();
+        updateLocalStorage(this);
     }
 
     addTodo({title: newTitle, description: newDescription, dueDate: newDueDate, priority: newPriority, notes: newNotes, checklist: newChecklist}){
         const todo = new Todo({title: newTitle, description: newDescription, projectTitle: this.title});
         this.todoArr.push(todo);
-
-        const storedProjects = JSON.parse(localStorage.getItem('projects'));
-        storedProjects[this.id] = this;
-        localStorage.setItem('projects', JSON.stringify(storedProjects));
+        updateLocalStorage(this);
     }
 
     removeTodo(todo){
         const found = this.todoArr.findIndex((element) => element.id == todo.id);
         this.todoArr.splice(found, 1);
-        
-        const storedProjects = JSON.parse(localStorage.getItem('projects'));
-        storedProjects[this.id] = this;
-        localStorage.setItem('projects', JSON.stringify(storedProjects));
+        updateLocalStorage(this);
     }
 
     logTodoItems(){
@@ -31,4 +26,10 @@ export class Project {
             console.log(`Project: ${item.projectTitle}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);
         }
     }
+}
+
+function updateLocalStorage(project){
+    const storedProjects = JSON.parse(localStorage.getItem('projects'));
+    storedProjects[project.id] = project;
+    localStorage.setItem('projects', JSON.stringify(storedProjects));
 }

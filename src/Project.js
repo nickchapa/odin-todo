@@ -31,6 +31,12 @@ export class Project {
             console.log(`Project: ${item.projectTitle}, Todo: ${item.title}`, `${item.description}, Finished: ${item.checklist}`);
         }
     }
+
+    removeFromLocalStorage(){
+        const storedObjects = JSON.parse(localStorage.getItem('projects'));
+        delete storedObjects[this.id];
+        localStorage.setItem('projects', JSON.stringify(storedObjects));
+    }
 }
 
 function updateLocalStorage(project){

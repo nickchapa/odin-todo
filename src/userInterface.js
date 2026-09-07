@@ -38,6 +38,14 @@ export function displayProject(project){
         displayTodo(newTodo, todoListUl, project);
     })
 
+    const removeProjectButton = document.createElement('button');
+    removeProjectButton.textContent = 'Delete Project';
+    removeProjectButton.addEventListener('click', (e) => {
+        project.removeFromLocalStorage();
+        projDiv.remove();
+    })
+
+    projDiv.append(removeProjectButton);
     body.append(projDiv);
 }
 

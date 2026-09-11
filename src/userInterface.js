@@ -16,7 +16,7 @@ export function displayProject(project){
     projDiv.append(todoListUl);
 
     for(let item of project.todoArr){
-        displayTodo(item, todoListUl, project);
+        displayTodo(item, todoListUl, project, projDiv);
     }
 
     addBtn.textContent = 'New Task';
@@ -35,7 +35,7 @@ export function displayProject(project){
         project.addTodo({title: newTodoTitle, description: newTodoDescription});
         const newTodo = project.todoArr[project.todoArr.length - 1];
 
-        displayTodo(newTodo, todoListUl, project);
+        displayTodo(newTodo, todoListUl, project, projDiv);
     })
 
     const removeProjectButton = document.createElement('button');
@@ -52,7 +52,7 @@ export function displayProject(project){
     body.append(projDiv);
 }
 
-function displayTodo(todo, ul, project){
+function displayTodo(todo, ul, project, projectDiv){
         const todoLabel = document.createElement('label');
         todoLabel.for = 'todoCheck';
 
@@ -91,6 +91,23 @@ function displayTodo(todo, ul, project){
             todoDetailsUl.className = 'details-ul';
             detailsBtn.textContent = 'details';
             todoDetailsUl.textContent = '';
+
+            function editTodoBtn(todo){
+                const editBtn = document.createElement('button');
+                editBtn.textContent = 'edit';
+
+                editBtn.addEventListener('click', (e) => {
+                    const newText = prompt('new todo title');
+                    newText ? todo.title = newText : todo.title = todo.title;
+
+                    project.updateLocalStorage();
+                    displayProject(project);
+                    projectDiv.remove();
+                })
+
+                todoDetailsUl.append(editBtn);
+            }
+
             detailsBtn.addEventListener('click', (e) => {
                 if(todoDetailsUl.textContent == ''){
                     for (let key in todo){
@@ -101,6 +118,7 @@ function displayTodo(todo, ul, project){
                     const todoRemoveBtn = removeTodoButton();
                     todoLi.append(todoDetailsUl);
                     todoDetailsUl.append(todoRemoveBtn);
+                    editTodoBtn(todo);
                 }
                 else todoDetailsUl.textContent = '';
             })

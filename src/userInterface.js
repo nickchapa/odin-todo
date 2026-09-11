@@ -41,8 +41,11 @@ export function displayProject(project){
     const removeProjectButton = document.createElement('button');
     removeProjectButton.textContent = 'Delete Project';
     removeProjectButton.addEventListener('click', (e) => {
-        project.removeFromLocalStorage();
-        projDiv.remove();
+        function removeProjectFunctions(){
+            project.removeFromLocalStorage();
+            projDiv.remove();
+        }
+        confirmDialog(removeProjectFunctions);
     })
 
     projDiv.append(removeProjectButton);
@@ -68,12 +71,15 @@ function displayTodo(todo, ul, project){
             project.updateCheckedStatus(todo);
         })
 
-        function createRemoveButton(){
+        function removeTodoButton(){
             const removeBtn = document.createElement('button');
             removeBtn.textContent = 'delete';
             removeBtn.addEventListener('click', (e) => {
-                project.removeTodo(todo);
-                todoLi.remove();
+                function removeTodoFunctions(){
+                    project.removeTodo(todo);
+                    todoLi.remove();
+                }
+                confirmDialog(removeTodoFunctions);
         })
 
             return removeBtn;
@@ -92,7 +98,7 @@ function displayTodo(todo, ul, project){
                         detailsLi.textContent = `${key}: ${todo[key]}`;
                         todoDetailsUl.append(detailsLi);
                     }
-                    const todoRemoveBtn = createRemoveButton();
+                    const todoRemoveBtn = removeTodoButton();
                     todoLi.append(todoDetailsUl);
                     todoDetailsUl.append(todoRemoveBtn);
                 }
@@ -122,3 +128,32 @@ addProjectButton.addEventListener('click', (e) => {
 })
 
 body.append(addProjectButton);
+
+function confirmDialog(functions){
+        const dialog = document.createElement('dialog');
+        const dialogP = document.createElement('p');
+        const confirmBtn = document.createElement('button');
+        const cancelBtn = document.createElement('button');
+
+        dialog.setAttribute('closedby', 'any');
+
+        dialogP.textContent = 'Remove?';
+        confirmBtn.textContent = 'Remove';
+        cancelBtn.textContent = 'Cancel';
+
+        confirmBtn.addEventListener('click', (e) => {
+            dialog.close();
+            dialog.remove();
+            functions();
+        })
+
+        cancelBtn.addEventListener('click', (e) => {
+            dialog.close();
+        })
+
+        dialog.append(dialogP);
+        dialog.append(confirmBtn);
+        dialog.append(cancelBtn);
+        body.append(dialog);
+        dialog.showModal();
+}

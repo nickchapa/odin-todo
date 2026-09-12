@@ -1,6 +1,3 @@
-// todo item
-// title, description, dueDate, priority
-
 export class Todo {
     constructor({title, description, dueDate, priority, notes, checklist, projectTitle} = {}){
         this.title = title;

@@ -6,7 +6,6 @@ export function displayProject(project){
     const projDiv = document.createElement('div');
     const projH3 = document.createElement('h3');
     const todoListUl = document.createElement('ul');
-    const addBtn = document.createElement('button');
 
     projDiv.className = 'proj-div';
 
@@ -19,36 +18,46 @@ export function displayProject(project){
         displayTodo(item, todoListUl, project, projDiv);
     }
 
-    addBtn.textContent = 'New Task';
-    projDiv.append(addBtn);
+    function createNewTaskBtn(){
+        const newTaskBtn = document.createElement('button');
+        newTaskBtn.textContent = 'New Task';
 
-    addBtn.addEventListener('click', () => {
-        const newTodoTitle = prompt('add new todo title');
-        if (newTodoTitle == null){
-            return;
-        }
+        newTaskBtn.addEventListener('click', () => {
+            const newTodoTitle = prompt('add new todo title');
+            if (newTodoTitle == null){
+                return;
+            }
 
-        let newTodoDescription = prompt('add description', 'none');
-        if (newTodoDescription == null){
-            newTodoDescription = 'none';
-        }
-        project.addTodo({title: newTodoTitle, description: newTodoDescription});
-        const newTodo = project.todoArr[project.todoArr.length - 1];
+            let newTodoDescription = prompt('add description', 'none');
+            if (newTodoDescription == null){
+                newTodoDescription = 'none';
+            }
 
-        displayTodo(newTodo, todoListUl, project, projDiv);
-    })
+            project.addTodo({title: newTodoTitle, description: newTodoDescription});
+            const newTodo = project.todoArr[project.todoArr.length - 1];
 
-    const removeProjectButton = document.createElement('button');
-    removeProjectButton.textContent = 'Delete Project';
-    removeProjectButton.addEventListener('click', (e) => {
-        function removeProjectFunctions(){
-            project.removeFromLocalStorage();
-            projDiv.remove();
-        }
+            displayTodo(newTodo, todoListUl, project, projDiv);
+        })
+
+        projDiv.append(newTaskBtn);
+    }
+
+    function createDeleteProjectBtn(){
+        const deleteProjectBtn = document.createElement('button');
+        deleteProjectBtn.textContent = 'Delete Project';
+        deleteProjectBtn.addEventListener('click', (e) => {
+            function removeProjectFunctions(){
+                project.removeFromLocalStorage();
+                projDiv.remove();
+            }
         confirmDialog(removeProjectFunctions);
     })
+        projDiv.append(deleteProjectBtn);
+    }
 
-    projDiv.append(removeProjectButton);
+    createNewTaskBtn();
+    createDeleteProjectBtn();
+
     body.append(projDiv);
 }
 

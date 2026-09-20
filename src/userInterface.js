@@ -23,7 +23,7 @@ export function displayProject(project){
         newTaskBtn.textContent = 'New Task';
 
         newTaskBtn.addEventListener('click', () => {
-            const newTodoTitle = prompt('add new todo title');
+            let newTodoTitle = prompt('add new todo title', 'new task');
             if (newTodoTitle == null){
                 return;
             }

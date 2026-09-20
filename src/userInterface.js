@@ -23,20 +23,37 @@ export function displayProject(project){
         newTaskBtn.textContent = 'New Task';
 
         newTaskBtn.addEventListener('click', () => {
-            let newTodoTitle = prompt('add new todo title', 'new task');
-            if (newTodoTitle == null){
-                return;
-            }
+            const inputDialog = document.createElement('dialog');
+            const inputForm = document.createElement('form');
+            const todoTitleLabel = document.createElement('label');
+            const todoTitleInput = document.createElement('input');
+            const todoDescriptionLabel = document.createElement('label');
+            const todoDescriptionInput = document.createElement('input');
+            const submitButton = document.createElement('button');
 
-            let newTodoDescription = prompt('add description', 'none');
-            if (newTodoDescription == null){
-                newTodoDescription = 'none';
-            }
+            todoTitleLabel.textContent = 'Task';
+            todoDescriptionLabel.textContent = 'Description';
+            submitButton.textContent = 'Submit';
 
-            project.addTodo({title: newTodoTitle, description: newTodoDescription});
-            const newTodo = project.todoArr[project.todoArr.length - 1];
+            todoTitleInput.setAttribute('type', 'text');
+            todoDescriptionInput.setAttribute('type', 'text');
 
-            displayTodo(newTodo, todoListUl, project, projDiv);
+            inputForm.append(todoTitleLabel);
+            inputForm.append(todoTitleInput);
+            inputForm.append(todoDescriptionLabel);
+            inputForm.append(todoDescriptionInput);
+            inputForm.append(submitButton);
+            inputDialog.append(inputForm);
+            body.append(inputDialog);
+
+            inputDialog.showModal();
+            
+            submitButton.addEventListener('click', (e) => {
+                project.addTodo({title: todoTitleInput.value, description: todoDescriptionInput.value});
+                const newTodo = project.todoArr[project.todoArr.length - 1];
+                displayTodo(newTodo, todoListUl, project, projDiv);
+                inputDialog.close();
+            })
         })
 
         projDiv.append(newTaskBtn);
@@ -60,11 +77,31 @@ export function displayProject(project){
         editProjectBtn.textContent = 'Edit Title';
 
         editProjectBtn.addEventListener('click', (e)=> {
-            const newProjectTitle = prompt('Enter new project title');
-            newProjectTitle ? project.title = newProjectTitle : project.title = project.title;
+            const inputDialog = document.createElement('dialog');
+            const inputForm = document.createElement('form');
+            const newProjectTitleLabel = document.createElement('label');
+            const newProjectTitleInput = document.createElement('input');
+            const submitButton = document.createElement('button');
 
-            project.updateLocalStorage();
-            projH3.textContent = project.title;
+            newProjectTitleInput.setAttribute('type', 'input');
+
+            newProjectTitleLabel.textContent = 'New Project Name:'
+            submitButton.textContent = 'Submit';
+
+            inputForm.append(newProjectTitleLabel);
+            inputForm.append(newProjectTitleInput);
+            inputForm.append(submitButton);
+            inputDialog.append(inputForm);
+            body.append(inputDialog);
+
+            inputDialog.showModal();
+
+            submitButton.addEventListener('click', (e) => {
+                project.title = newProjectTitleInput.value;
+                project.updateLocalStorage();
+                projH3.textContent = project.title;
+                inputDialog.close();
+            })
         })
 
         projDiv.append(editProjectBtn);
@@ -158,12 +195,28 @@ function displayTodo(todo, ul, project, projectDiv){
 const addProjectButton = document.createElement('button');
 addProjectButton.textContent = 'New Project';
 addProjectButton.addEventListener('click', (e) => {
-    const newProjectTitle = prompt('New Project Name: ', 'newProject');
-    if (newProjectTitle == null){
-        return;
-    }
-    const newProject = new Project(newProjectTitle);
-    displayProject(newProject);
+    const inputDialog = document.createElement('dialog');
+    const inputForm = document.createElement('form');
+    const newProjectTitleLabel = document.createElement('label');
+    const newProjectTitleInput = document.createElement('input');
+    const submitButton = document.createElement('button');
+
+    newProjectTitleLabel.textContent = 'New Project Title';
+    submitButton.textContent = 'Submit';
+
+    inputForm.append(newProjectTitleLabel);
+    inputForm.append(newProjectTitleInput);
+    inputForm.append(submitButton);
+    inputDialog.append(inputForm);
+    body.append(inputDialog);
+
+    inputDialog.showModal();
+
+    submitButton.addEventListener('click', (e) => {
+        const newProject = new Project(newProjectTitleInput.value);
+        displayProject(newProject);
+        inputDialog.close();
+    })  
 })
 
 body.append(addProjectButton);

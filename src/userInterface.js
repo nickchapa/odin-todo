@@ -62,37 +62,21 @@ export function displayProject(project){
 }
 
 function displayTodo(todo, ul, project, projectDiv){
-        const todoLabel = document.createElement('label');
-        todoLabel.for = 'todoCheck';
-
         const todoLi = document.createElement('li');
         const todoCheckbox = document.createElement('input', 'type="checkbox"');
+        const todoLabel = document.createElement('label');
+
         todoCheckbox.type = 'checkbox';
-        todoCheckbox.id = 'todoCheck';
 
         if(todo.checklist){
             todoCheckbox.checked = true;
         }
 
-        todoLabel.textContent = todo.title;
-
         todoCheckbox.addEventListener('click', (e) => {
             project.updateCheckedStatus(todo);
         })
 
-        function removeTodoButton(){
-            const removeBtn = document.createElement('button');
-            removeBtn.textContent = 'delete';
-            removeBtn.addEventListener('click', (e) => {
-                function removeTodoFunctions(){
-                    project.removeTodo(todo);
-                    todoLi.remove();
-                }
-                confirmDialog(removeTodoFunctions);
-        })
-
-            return removeBtn;
-        }
+        todoLabel.textContent = todo.title;
 
         function createDetailsButton(){
             const detailsBtn = document.createElement('button');
@@ -132,14 +116,26 @@ function displayTodo(todo, ul, project, projectDiv){
                 else todoDetailsUl.textContent = '';
             })
 
-            return detailsBtn
+            todoLi.append(detailsBtn);
         }
 
-        const todoDetailsBtn = createDetailsButton();
+        function removeTodoButton(){
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'delete';
+            removeBtn.addEventListener('click', (e) => {
+                function removeTodoFunctions(){
+                    project.removeTodo(todo);
+                    todoLi.remove();
+                }
+                confirmDialog(removeTodoFunctions);
+        })
+
+            return removeBtn;
+        }
 
         todoLi.append(todoCheckbox);
         todoLi.append(todoLabel);
-        todoLi.append(todoDetailsBtn);
+        createDetailsButton();
         ul.append(todoLi);
 }
 

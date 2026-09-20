@@ -110,8 +110,8 @@ function displayTodo(todo, ul, project, projectDiv){
                     }
                     const todoRemoveBtn = removeTodoButton();
                     todoLi.append(todoDetailsUl);
-                    todoDetailsUl.append(todoRemoveBtn);
                     editTodoBtn(todo);
+                    todoDetailsUl.append(todoRemoveBtn);
                 }
                 else todoDetailsUl.textContent = '';
             })

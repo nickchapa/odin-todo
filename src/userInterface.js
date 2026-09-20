@@ -55,8 +55,24 @@ export function displayProject(project){
         projDiv.append(deleteProjectBtn);
     }
 
+    function createEditProjectBtn(){
+        const editProjectBtn = document.createElement('button');
+        editProjectBtn.textContent = 'Edit Title';
+
+        editProjectBtn.addEventListener('click', (e)=> {
+            const newProjectTitle = prompt('Enter new project title');
+            newProjectTitle ? project.title = newProjectTitle : project.title = project.title;
+
+            project.updateLocalStorage();
+            projH3.textContent = project.title;
+        })
+
+        projDiv.append(editProjectBtn);
+    }
+
     createNewTaskBtn();
     createDeleteProjectBtn();
+    createEditProjectBtn();
 
     body.append(projDiv);
 }

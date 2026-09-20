@@ -110,8 +110,8 @@ function displayTodo(todo, ul, project, projectDiv){
                     newText ? todo.title = newText : todo.title = todo.title;
 
                     project.updateLocalStorage();
-                    displayProject(project);
-                    projectDiv.remove();
+                    todoLabel.textContent = todo.title;
+                    todoDetailsUl.textContent = '';
                 })
 
                 todoDetailsUl.append(editBtn);

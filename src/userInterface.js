@@ -30,10 +30,12 @@ export function displayProject(project){
             const todoDescriptionLabel = document.createElement('label');
             const todoDescriptionInput = document.createElement('input');
             const submitButton = document.createElement('button');
+            const cancelButton = document.createElement('button');
 
             todoTitleLabel.textContent = 'Task';
             todoDescriptionLabel.textContent = 'Description';
             submitButton.textContent = 'Submit';
+            cancelButton.textContent = 'Cancel';
 
             todoTitleInput.setAttribute('type', 'text');
             todoDescriptionInput.setAttribute('type', 'text');
@@ -43,8 +45,14 @@ export function displayProject(project){
             inputForm.append(todoDescriptionLabel);
             inputForm.append(todoDescriptionInput);
             inputForm.append(submitButton);
+            inputForm.append(cancelButton);
+
             inputDialog.append(inputForm);
             body.append(inputDialog);
+            
+            cancelButton.addEventListener('click', (e) => {
+                inputDialog.close();
+            })
 
             inputDialog.showModal();
             
@@ -82,6 +90,11 @@ export function displayProject(project){
             const newProjectTitleLabel = document.createElement('label');
             const newProjectTitleInput = document.createElement('input');
             const submitButton = document.createElement('button');
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.addEventListener('click', (e) => {
+                inputDialog.close();
+            })
 
             newProjectTitleInput.setAttribute('type', 'input');
 
@@ -91,6 +104,8 @@ export function displayProject(project){
             inputForm.append(newProjectTitleLabel);
             inputForm.append(newProjectTitleInput);
             inputForm.append(submitButton);
+            inputForm.append(cancelButton);
+
             inputDialog.append(inputForm);
             body.append(inputDialog);
 
@@ -200,6 +215,11 @@ addProjectButton.addEventListener('click', (e) => {
     const newProjectTitleLabel = document.createElement('label');
     const newProjectTitleInput = document.createElement('input');
     const submitButton = document.createElement('button');
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Cancel';
+    cancelButton.addEventListener('click', (e) => {
+        inputDialog.close();
+    })
 
     newProjectTitleLabel.textContent = 'New Project Title';
     submitButton.textContent = 'Submit';
@@ -207,6 +227,7 @@ addProjectButton.addEventListener('click', (e) => {
     inputForm.append(newProjectTitleLabel);
     inputForm.append(newProjectTitleInput);
     inputForm.append(submitButton);
+    inputForm.append(cancelButton);
     inputDialog.append(inputForm);
     body.append(inputDialog);
 

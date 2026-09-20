@@ -158,14 +158,41 @@ function displayTodo(todo, ul, project, projectDiv){
                 editBtn.textContent = 'edit';
 
                 editBtn.addEventListener('click', (e) => {
-                    const newText = prompt('new todo title');
-                    newText ? todo.title = newText : todo.title = todo.title;
+                    const inputDialog = document.createElement('dialog');
+                    const inputForm = document.createElement('form');
+                    const todoTitleLabel = document.createElement('label');
+                    const todoTitleInput = document.createElement('input');
+                    const submitButton = document.createElement('button');
+                    const cancelButton = document.createElement('button');
 
-                    project.updateLocalStorage();
-                    todoLabel.textContent = todo.title;
-                    todoDetailsUl.textContent = '';
+                    todoTitleLabel.textContent = 'Task';
+                    submitButton.textContent = 'Submit';
+                    cancelButton.textContent = 'Cancel';
+
+                    todoTitleInput.setAttribute('type', 'text');
+
+                    inputForm.append(todoTitleLabel);
+                    inputForm.append(todoTitleInput);
+                    inputForm.append(submitButton);
+                    inputForm.append(cancelButton);
+
+                    inputDialog.append(inputForm);
+                    body.append(inputDialog);
+            
+                    cancelButton.addEventListener('click', (e) => {
+                        inputDialog.close();
+                    })
+
+                    inputDialog.showModal();
+                    
+                    submitButton.addEventListener('click', (e) => {
+                        todo.title = todoTitleInput.value;
+
+                        project.updateLocalStorage();
+                        todoLabel.textContent = todo.title;
+                        todoDetailsUl.textContent = '';
+                    })
                 })
-
                 todoDetailsUl.append(editBtn);
             }
 

@@ -40,6 +40,7 @@ export function displayProject(project){
 
             todoTitleInput.setAttribute('type', 'text');
             todoDescriptionInput.setAttribute('type', 'text');
+            submitButton.setAttribute('type', 'button');
 
             inputForm.append(todoTitleLabel);
             inputForm.append(todoTitleInput);
@@ -131,6 +132,7 @@ export function displayProject(project){
             })
 
             newProjectTitleInput.setAttribute('type', 'input');
+            submitButton.setAttribute('type', 'button');
 
             newProjectTitleLabel.textContent = 'New Project Name:'
             submitButton.textContent = 'Submit';
@@ -204,6 +206,7 @@ function displayTodo(todo, ul, project, projectDiv){
                     cancelButton.textContent = 'Cancel';
 
                     todoTitleInput.setAttribute('type', 'text');
+                    submitButton.setAttribute('type', 'button');
 
                     inputForm.append(todoTitleLabel);
                     inputForm.append(todoTitleInput);
@@ -251,6 +254,7 @@ function displayTodo(todo, ul, project, projectDiv){
         function removeTodoButton(){
             const removeBtn = document.createElement('button');
             removeBtn.textContent = 'delete';
+            removeBtn.setAttribute('type', 'button');
             removeBtn.addEventListener('click', (e) => {
                 function removeTodoFunctions(){
                     project.removeTodo(todo);
@@ -285,6 +289,8 @@ addProjectButton.addEventListener('click', (e) => {
     newProjectTitleLabel.textContent = 'New Project Title';
     submitButton.textContent = 'Submit';
 
+    submitButton.setAttribute('type', 'button');
+
     inputForm.append(newProjectTitleLabel);
     inputForm.append(newProjectTitleInput);
     inputForm.append(submitButton);
@@ -310,6 +316,7 @@ function confirmDialog(functions){
         const cancelBtn = document.createElement('button');
 
         dialog.setAttribute('closedby', 'any');
+        confirmBtn.setAttribute('type', 'button');
 
         dialogP.textContent = 'Remove?';
         confirmBtn.textContent = 'Remove';

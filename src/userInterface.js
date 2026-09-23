@@ -228,6 +228,7 @@ function displayTodo(todo, ul, project, projectDiv){
                         project.updateLocalStorage();
                         todoLabel.textContent = todo.title;
                         todoDetailsUl.textContent = '';
+                        inputDialog.close();
                     })
                 })
                 todoDetailsUl.append(editBtn);

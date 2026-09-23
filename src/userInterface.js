@@ -1,4 +1,5 @@
 import { Project } from './Project.js';
+import { format } from 'date-fns';
 
 const body = document.querySelector('body');
 
@@ -54,11 +55,44 @@ export function displayProject(project){
                 inputDialog.close();
             })
 
+            const yearNumLabel = document.createElement('label');
+            const monthNumLabel = document.createElement('label');
+            const dayNumLabel = document.createElement('label');
+            yearNumLabel.textContent = 'Year';
+            monthNumLabel.textContent = 'Month';
+            dayNumLabel.textContent = 'Day';
+
+            const yearNumInput = document.createElement('input');
+            const monthNumInput = document.createElement('input');
+            const dayNumInput = document.createElement('input');
+
+            yearNumInput.setAttribute('type', 'number');
+            yearNumInput.setAttribute('min', '1900');
+            yearNumInput.setAttribute('max', '2100');
+            monthNumInput.setAttribute('type', 'number');
+            monthNumInput.setAttribute('min', '01');
+            monthNumInput.setAttribute('max', '12');
+            dayNumInput.setAttribute('type', 'number');
+            dayNumInput.setAttribute('min', '01');
+            dayNumInput.setAttribute('max', '31');
+
+            yearNumInput.setAttribute('placeholder', 'YYYY');
+            monthNumInput.setAttribute('placeholder', 'MM');
+            dayNumInput.setAttribute('placeholder', 'DD');
+
+            inputForm.append(yearNumLabel);
+            inputForm.append(yearNumInput);
+            inputForm.append(monthNumLabel);
+            inputForm.append(monthNumInput);
+            inputForm.append(dayNumLabel);
+            inputForm.append(dayNumInput);
+
             inputDialog.showModal();
             
             submitButton.addEventListener('click', (e) => {
-                project.addTodo({title: todoTitleInput.value, description: todoDescriptionInput.value});
-                const newTodo = project.todoArr[project.todoArr.length - 1];
+                const newDate = new Date(yearNumInput.valueAsNumber, monthNumInput.valueAsNumber - 1, dayNumInput.valueAsNumber);
+                const formattedDate = format(newDate, 'MM/dd/yyyy');
+                const newTodo = project.addTodo({title: todoTitleInput.value, description: todoDescriptionInput.value, dueDate: formattedDate});
                 displayTodo(newTodo, todoListUl, project, projDiv);
                 inputDialog.close();
             })

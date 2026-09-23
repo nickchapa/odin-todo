@@ -10,7 +10,7 @@ export class Project {
     }
 
     addTodo({title: newTitle, description: newDescription, dueDate: newDueDate, priority: newPriority, notes: newNotes, checklist: newChecklist}){
-        const todo = new Todo({title: newTitle, description: newDescription, projectTitle: this.title});
+        const todo = new Todo({title: newTitle, description: newDescription, projectTitle: this.title, dueDate: newDueDate});
         this.todoArr.push(todo);
         this.updateLocalStorage();
     }

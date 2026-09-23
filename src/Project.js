@@ -13,6 +13,8 @@ export class Project {
         const todo = new Todo({title: newTitle, description: newDescription, projectTitle: this.title, dueDate: newDueDate});
         this.todoArr.push(todo);
         this.updateLocalStorage();
+
+        return todo;
     }
 
     removeTodo(todo){
